@@ -203,7 +203,6 @@ canvas.addEventListener('touchstart', (e) => {
 
 
 buttonStart.addEventListener('click', () => {
-	alertStart.innerHTML = `Sube hasta el final al redondito blanco y vuelve al mismo lugar!`
 	alertStart.style.visibility = 'visible'
 	setTimeout(() => {
 		alertStart.style.visibility = 'hidden'
