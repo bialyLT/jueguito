@@ -31,12 +31,6 @@ header > h1 {
 	font-size: 2rem;
 }
 
-h1::selection,
-.alert__lose::selection,
-.alert__start::selection {
-	background: none;
-}
-
 .container-canvas {
 	display: flex;
 	align-items: center;
@@ -67,8 +61,6 @@ h1::selection,
 
 .alert__start {
 	font-size: 1rem;
-	top: 20%;
-	z-index: 5;
 	width: 20ch;
 	border: 5px solid black;
 	border-radius: 15px;
@@ -113,4 +105,11 @@ footer > p::selection,
 .buttonStart::selection {
 	background-color: black;
 	color: var(--main-red);
+}
+
+h1::selection,
+.alert__lose::selection,
+.alert__start::selection,
+.circleText::selection {
+	background: none;
 }
