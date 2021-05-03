@@ -65,6 +65,11 @@ h1::selection,
 	position: absolute;
 }
 
+.circleText {
+	position: absolute;
+	color: aliceblue;
+}
+
 .alert__start {
 	font-size: 1rem;
 	width: 20ch;
@@ -95,7 +100,8 @@ p {
 /* hovers */
 
 .buttonStart:hover,
-.info:hover {
+.info:hover,
+.fab:hover {
 	color: rgb(255, 71, 71);
 }
 

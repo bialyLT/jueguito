@@ -107,7 +107,7 @@ const changeLevel = () => {
 const  loseGame = () => {
 	if (circle.move == false) {
 		alertLose.style.visibility = 'visible'
-		alertLose.innerHTML = `Buen intento campeón `
+		alertLose.innerHTML = `Buen intento! `
 	}
 }
 
@@ -199,8 +199,11 @@ canvas.addEventListener('touchstart', (e) => {
 
 // escucha del boton start
 
+
+
+
 buttonStart.addEventListener('click', () => {
-	alertStart.innerHTML = 'Sube hasta el final y vuelve al mismo lugar para subir de nivel'
+	alertStart.innerHTML = `Sube hasta el final al redondito blanco y vuelve al mismo lugar!`
 	alertStart.style.visibility = 'visible'
 	setTimeout(() => {
 		alertStart.style.visibility = 'hidden'
