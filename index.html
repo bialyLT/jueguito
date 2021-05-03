@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="google" content="notranslate" />
+		<link rel="stylesheet" href="styles.css" />
+		<title>jueguito</title>
+		<script src="https://kit.fontawesome.com/a24409c319.js" crossorigin="anonymous"></script>
+
+	</head>
+	<body id="body">
+		<p class="alert__start" role="alert" id="alertStart">
+		</p>
+		<main class="main">
+			<header>
+				<h1 id="level"></h1>
+			</header>
+			<div class="container-canvas">
+				<i id="info" class="far fa-question-circle info"></i>
+				<p id="alertLose" class="alert__lose"></p>
+				<button id="buttonStart" class="buttonStart">Start</button>
+				<canvas
+					id="canvas"
+					width="300px"
+					height="700px"
+					style="border: 5px solid #000"
+				>
+			</div>
+		</main>
+		<footer>
+			<p>Liam bialy 2021. © Copyright. Todos los derechos reservados</p>
+			<p>Version 0.5 Beta</p>
+			<a href="https://www.instagram.com/liamtbialy/?hl=es-la" target="_blank"><i class="fab fa-instagram"></i></a>
+			<a href="https://www.twitter.com/liambialy/" target="_blank"><i class="fab fa-twitter"></i></a>
+		</footer>
+
+
+	</body>
+	<script type="module" src="./scripts/main.js"></script>
+	<script src="./scripts/classes/Circle.js"></script>
+	<script src="./scripts/classes/Rectangle.js"></script>
+	<script src="./scripts/classes/Obstacle.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+</html>
