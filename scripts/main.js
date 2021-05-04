@@ -2,6 +2,7 @@ import Obstacle from './classes/Obstacle.js';
 import Rectangle from './classes/Rectangle.js';
 import Circle from './classes/Circle.js';
 import posObstacles from './createObstacles.js';
+import canvasHeight from './canvasHeight.js';
 
 const { round, pow, sqrt } = Math;
 const fps = 60;
@@ -14,13 +15,21 @@ const info = document.getElementById('info')
 let startButton = false
 
 
+
+// variables para calcular las alturas del canvas y sus objetos de manera relativa
+
+const heightCanvas = canvasHeight(110);
+const heightRectangles = ((heightCanvas * 10) / 100);
+const posRectStart = (heightCanvas - heightRectangles);
+const posCircleStart = (posRectStart + 20)
+
+
 //creacion de los objetos
 
 const arrayObstacles = posObstacles.map(p=> new Obstacle(p.nameObstacle, p.x, p.y));
-const circle = new Circle(150, 660)
-const rectstart = new Rectangle (0, 622)
+const circle = new Circle(150, posCircleStart)
+const rectstart = new Rectangle (0, posRectStart)
 const rectend = new Rectangle (0,0)
-
 
 
 // funcion para detectar el mouse dentro del canvas
@@ -68,13 +77,13 @@ let circleEnding = true
 const touchRect = function() {
 	if (circleEnding == true) {
 		const evenObs = arrayObstacles.map(p =>(p % 2 == 0))
-		if (circle.y < 80 && evenObs) {
+		if (circle.y < heightRectangles && evenObs) {
 			velObstacleLeft += 1
 			circleEnding = false
 		}
 	}
 	else {
-		if (circle.y > 620) {
+		if (circle.y > posRectStart) {
 			velObstacleRight += 1
 			circleEnding = true
 		}
@@ -87,9 +96,8 @@ const touchRect = function() {
 // funcion para redibujar el canvas
 const deleteCanvas = () => {
 	canvas.width = 300
-	canvas.height = 700
+	canvas.height = heightCanvas
 }
-
 // FUNCIONES DE NIVELES
 
 
@@ -100,14 +108,13 @@ const deleteCanvas = () => {
 const changeLevel = () => {
 	let level = velObstacleRight
 	leveltitle.innerHTML = `Nivel ${level}`
-	console.log(velObstacleRight)
 }
 
 // funcion para imprimir en pantalla que perdiste
 const  loseGame = () => {
 	if (circle.move == false) {
 		alertLose.style.visibility = 'visible'
-		alertLose.innerHTML = `Buen intento! `
+		alertLose.innerHTML = `Buen intento!`
 	}
 }
 
@@ -156,7 +163,7 @@ canvas.addEventListener('mousedown', () =>{
 	canvas.style.cursor = 'none'
 	canvas.addEventListener('mousemove', (e) =>{
 		// condicion para que no toque las paredes ni los cuadrados
-		if (circle.move == true && circle.x > 20 && circle.x < 280 && circle.y > 20 && circle.y < 690 ) {
+		if (circle.move == true && circle.x > 20 && circle.x < 280 && circle.y > 20 && circle.y < (heightCanvas - 10) ) {
 				circle.drag(oMousePos(canvas, e).x,oMousePos(canvas, e).y)
 		}
 		else {
@@ -203,17 +210,19 @@ canvas.addEventListener('touchstart', (e) => {
 
 
 buttonStart.addEventListener('click', () => {
+	canvas.style.border = '5px solid #000'
 	alertStart.style.visibility = 'visible'
 	setTimeout(() => {
 		alertStart.style.visibility = 'hidden'
 	}, 3000);
-	if (body.requestFullscreen) {
+	if (!body.elementFullscreen) {
 		body.requestFullscreen();
 	}
 	buttonStart.style.display = 'none';
 	if (startButton == false) {
 		startButton = true
 		startGame()
+
 	}
 })
 
@@ -221,8 +230,11 @@ buttonStart.addEventListener('click', () => {
 
 info.addEventListener('click', () => {
 	alertStart.style.visibility = 'visible'
-	
 	setTimeout(() => {
 		alertStart.style.visibility = 'hidden'
 	}, 4000);
 })
+
+
+
+

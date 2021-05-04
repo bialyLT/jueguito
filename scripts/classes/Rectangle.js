@@ -1,3 +1,7 @@
+import canvasHeight from './../canvasHeight.js';
+const heightCanvas = canvasHeight(110);
+const heightRectangles = ((heightCanvas * 10) / 100);
+
 let ctx;
 ctx = canvas.getContext('2d');
 // clase de inicio y fin
@@ -9,7 +13,10 @@ class Rectangle{
 	}
 	draw = function() {
 		ctx.fillStyle = "#206a5d";
-		ctx.fillRect(this.x, this.y, 300, 80);
+		if (heightCanvas < 600) {
+			ctx.fillRect(this.x, this.y, 300, 50);
+		}
+		else ctx.fillRect(this.x, this.y, 300, heightRectangles);
 	};
 };
 
