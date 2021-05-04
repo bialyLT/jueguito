@@ -1,5 +1,5 @@
 import canvasHeight from './../canvasHeight.js';
-const heightCanvas = canvasHeight(110);
+const heightCanvas = canvasHeight(105);
 const heightRectangles = ((heightCanvas * 10) / 100);
 
 let ctx;

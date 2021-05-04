@@ -11,6 +11,7 @@ const alertLose = document.getElementById('alertLose')
 const alertStart = document.getElementById('alertStart')
 const buttonStart = document.getElementById('buttonStart')
 const body = document.getElementById('body')
+const main = document.getElementById('main')
 const info = document.getElementById('info')
 let startButton = false
 
@@ -18,7 +19,7 @@ let startButton = false
 
 // variables para calcular las alturas del canvas y sus objetos de manera relativa
 
-const heightCanvas = canvasHeight(110);
+const heightCanvas = canvasHeight(105);
 const heightRectangles = ((heightCanvas * 10) / 100);
 const posRectStart = (heightCanvas - heightRectangles);
 const posCircleStart = (posRectStart + 20)
@@ -212,6 +213,7 @@ canvas.addEventListener('touchstart', (e) => {
 buttonStart.addEventListener('click', () => {
 	canvas.style.border = '5px solid #000'
 	alertStart.style.visibility = 'visible'
+	info.style.visibility = 'visible'
 	setTimeout(() => {
 		alertStart.style.visibility = 'hidden'
 	}, 3000);
