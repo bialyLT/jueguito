@@ -44,6 +44,15 @@ const oMousePos = function(canvas, e) {
 }
 
 
+// funcion para detectar tactil en canvas
+const oTouchPos = function(canvas, e) {
+	const ClientRect = canvas.getBoundingClientRect()
+	  return {
+	  x: round(e.touches[0].clientX - ClientRect.left),
+	  y: round(e.touches[0].clientY - ClientRect.top)
+  }
+}
+
 // funcion para calcular distancia entre dos objetos 2d
 const dis = (obj1x, obj2x, obj1y, obj2y) => {
 	let d
@@ -184,26 +193,30 @@ canvas.addEventListener('mousedown', () =>{
 //escucha de tactil
 
 canvas.addEventListener('touchstart', (e) => {
-	e.preventDefault()
+	const touchstart = e.isTrusted
 	circle.move = true
-	canvas.addEventListener('touchmove', (e) => {
-		e.preventDefault()
-		if (circle.move == true && circle.x > 20 && circle.x < 280 && circle.y > 20 && circle.y < 690 ) {
-			circle.drag(oMousePos(canvas, e).x,oMousePos(canvas, e).y)
-	}
-	else {
-		loseGame()
-		circle.move = false
-		setTimeout(() => {
-			location.reload()
-		}, 2000);
-	}
+	canvas.style.cursor = 'none'
+	canvas.addEventListener('touchmove', (e) =>{
+		if (touchstart == true){
+			// condicion para que no toque las paredes ni los cuadrados
+			if (circle.move == true && circle.x > 20 && circle.x < 280 && circle.y > 20 && circle.y < (heightCanvas - 10) ) {
+					circle.drag(oTouchPos(canvas, e).x,oTouchPos(canvas, e).y)
+			}
+			else {
+				loseGame()
+				circle.move = false
+				setTimeout(() => {
+					location.reload()
+				}, 2000);
+			}
+			}
 	})
 	canvas.addEventListener('touchend', (e) => {
-		e.preventDefault()
+		canvas.style.cursor = 'default'
 		circle.move = false
 	})
 })
+
 
 // escucha del boton start
 
