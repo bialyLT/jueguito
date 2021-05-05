@@ -11,8 +11,8 @@ const alertLose = document.getElementById('alertLose')
 const alertStart = document.getElementById('alertStart')
 const buttonStart = document.getElementById('buttonStart')
 const body = document.getElementById('body')
-const main = document.getElementById('main')
 const info = document.getElementById('info')
+const bestLevel = document.getElementById('bestLevel')
 let startButton = false
 
 
@@ -70,9 +70,7 @@ const touchObs = function() {
 		if (o < 30) {
 			loseGame()
 			circle.move = false
-			setTimeout(() => {
-				location.reload()
-			}, 2000);
+			velObstacleRight = 1
 		}
 	})
 	return d
@@ -115,18 +113,26 @@ const deleteCanvas = () => {
 
 
 
-const changeLevel = () => {
-	let level = velObstacleRight
+const changeLevel = (velfinal) => {
+	let level = velfinal
 	leveltitle.innerHTML = `Nivel ${level}`
 }
 
 // funcion para imprimir en pantalla que perdiste
 const  loseGame = () => {
 	if (circle.move == false) {
-		alertLose.style.visibility = 'visible'
 		alertLose.innerHTML = `Buen intento!`
+		alertLose.style.visibility = 'visible'
 	}
 }
+
+// funcion para crear record
+
+const recordGame = (velfinal) => {
+	let record = velfinal
+	bestLevel.innerHTML = `New Best: ${record}`
+}
+
 
 
 //bucles principales
@@ -153,7 +159,7 @@ const mainRules = () => {
 	circle.stop()
 	touchObs()
 	touchRect()
-	changeLevel()
+	changeLevel(velObstacleRight)
 	loseGame()
 }
 
@@ -169,6 +175,7 @@ const mainRules = () => {
 
 // escucha de mouse
 canvas.addEventListener('mousedown', () =>{
+	alertLose.style.visibility = 'hidden'
 	circle.move = true
 	canvas.style.cursor = 'none'
 	canvas.addEventListener('mousemove', (e) =>{
@@ -179,9 +186,8 @@ canvas.addEventListener('mousedown', () =>{
 		else {
 			loseGame()
 			circle.move = false
-			setTimeout(() => {
-				location.reload()
-			}, 2000);
+			velObstacleRight = 1
+			velObstacleLeft = 1
 		}
 	})
 	canvas.addEventListener('mouseup', (e) => {
@@ -205,9 +211,8 @@ canvas.addEventListener('touchstart', (e) => {
 			else {
 				loseGame()
 				circle.move = false
-				setTimeout(() => {
-					location.reload()
-				}, 2000);
+				velObstacleRight = 1
+				velObstacleLeft = 1
 			}
 			}
 	})

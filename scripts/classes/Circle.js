@@ -1,3 +1,8 @@
+import canvasHeight from './../canvasHeight.js';
+const heightCanvas = canvasHeight(105);
+const heightRectangles = ((heightCanvas * 10) / 100);
+const posRectStart = (heightCanvas - heightRectangles);
+const posCircleStart = (posRectStart + 20)
 let ctx;
 ctx = canvas.getContext('2d');
 
@@ -22,7 +27,7 @@ class Circle{
 	stop = function() {
 		if (this.move == false) {
 			this.x = 150;
-			this.y = 660;
+			this.y = posCircleStart;
 		};
 	};
 };
