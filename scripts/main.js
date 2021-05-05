@@ -11,6 +11,7 @@ const alertLose = document.getElementById('alertLose')
 const alertStart = document.getElementById('alertStart')
 const buttonStart = document.getElementById('buttonStart')
 const body = document.getElementById('body')
+const main = document.getElementById('main')
 const info = document.getElementById('info')
 const bestLevel = document.getElementById('bestLevel')
 let startButton = false
@@ -219,13 +220,13 @@ canvas.addEventListener('touchstart', (e) => {
 				circle.move = false
 			}
 			}
-	})
+	},{passive: true})
 	canvas.addEventListener('touchend', (e) => {
 		loseGame()
 		canvas.style.cursor = 'default'
 		circle.move = false
-	})
-})
+	},{passive: true})
+},{passive: true})
 
 
 // escucha del boton start
@@ -240,8 +241,8 @@ buttonStart.addEventListener('click', () => {
 	setTimeout(() => {
 		alertStart.style.visibility = 'hidden'
 	}, 3000);
-	if (!body.elementFullscreen) {
-		body.requestFullscreen();
+	if (!main.elementFullscreen) {
+		main.requestFullscreen();
 	}
 	buttonStart.style.display = 'none';
 	if (startButton == false) {
