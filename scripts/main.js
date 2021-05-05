@@ -60,7 +60,7 @@ const dis = (obj1x, obj2x, obj1y, obj2y) => {
 	 return d
 }
 
-// funcion para que todos circle se choque con todos los obstaculos
+// funcion para que circle se choque con todos los obstaculos
 const touchObs = function() {
 	const d = [];
 	arrayObstacles.forEach(c => {
@@ -70,7 +70,6 @@ const touchObs = function() {
 		if (o < 30) {
 			loseGame()
 			circle.move = false
-			velObstacleRight = 1
 		}
 	})
 	return d
@@ -113,8 +112,8 @@ const deleteCanvas = () => {
 
 
 
-const changeLevel = (velfinal) => {
-	let level = velfinal
+const changeLevel = () => {
+	let level = velObstacleRight
 	leveltitle.innerHTML = `Nivel ${level}`
 }
 
@@ -174,32 +173,38 @@ const mainRules = () => {
 
 
 // escucha de mouse
-canvas.addEventListener('mousedown', () =>{
+canvas.addEventListener('mousedown', (e) =>{
+	velObstacleRight = 1
+	velObstacleLeft = 1
+	let mouseStart = e.isTrusted
 	alertLose.style.visibility = 'hidden'
 	circle.move = true
 	canvas.style.cursor = 'none'
 	canvas.addEventListener('mousemove', (e) =>{
-		// condicion para que no toque las paredes ni los cuadrados
-		if (circle.move == true && circle.x > 20 && circle.x < 280 && circle.y > 20 && circle.y < (heightCanvas - 10) ) {
+		if (mouseStart == true) {
+			// condicion para que no toque las paredes ni los cuadrados
+			if (circle.move == true && circle.x > 20 && circle.x < 280 && circle.y > 20 && circle.y < (heightCanvas - 10) ) {
 				circle.drag(oMousePos(canvas, e).x,oMousePos(canvas, e).y)
+			}
+			else {
+				loseGame()
+				circle.move = false
+			}
 		}
-		else {
+		})
+		canvas.addEventListener('mouseup', (e) => {
+			canvas.style.cursor = 'default'
 			loseGame()
 			circle.move = false
-			velObstacleRight = 1
-			velObstacleLeft = 1
-		}
-	})
-	canvas.addEventListener('mouseup', (e) => {
-		canvas.style.cursor = 'default'
-		circle.move = false
 	})
 })
 
 //escucha de tactil
 
 canvas.addEventListener('touchstart', (e) => {
-	const touchstart = e.isTrusted
+	velObstacleRight = 1
+	velObstacleLeft = 1
+	let touchstart = e.isTrusted
 	circle.move = true
 	canvas.style.cursor = 'none'
 	canvas.addEventListener('touchmove', (e) =>{
@@ -211,12 +216,11 @@ canvas.addEventListener('touchstart', (e) => {
 			else {
 				loseGame()
 				circle.move = false
-				velObstacleRight = 1
-				velObstacleLeft = 1
 			}
 			}
 	})
 	canvas.addEventListener('touchend', (e) => {
+		loseGame()
 		canvas.style.cursor = 'default'
 		circle.move = false
 	})
