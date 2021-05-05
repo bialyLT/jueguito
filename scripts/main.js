@@ -205,6 +205,7 @@ canvas.addEventListener('touchstart', (e) => {
 	velObstacleRight = 1
 	velObstacleLeft = 1
 	let touchstart = e.isTrusted
+	alertLose.style.visibility = 'hidden'
 	circle.move = true
 	canvas.style.cursor = 'none'
 	canvas.addEventListener('touchmove', (e) =>{
