@@ -20,7 +20,7 @@ let startButton = false
 
 // variables para calcular las alturas del canvas y sus objetos de manera relativa
 
-const heightCanvas = canvasHeight(105);
+const heightCanvas = canvasHeight(85);
 const heightRectangles = ((heightCanvas * 10) / 100);
 const posRectStart = (heightCanvas - heightRectangles);
 const posCircleStart = (posRectStart + 20)

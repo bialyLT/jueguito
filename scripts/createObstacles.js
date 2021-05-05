@@ -1,5 +1,5 @@
 import canvasHeight from './canvasHeight.js'
-const heightCanvas = canvasHeight(100);
+const heightCanvas = canvasHeight(80);
 const heightObstacles = ((heightCanvas * 10) / 100);
 const posX = 30
 const posY = heightObstacles;
