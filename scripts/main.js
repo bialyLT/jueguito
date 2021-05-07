@@ -8,11 +8,12 @@ const { round, pow, sqrt } = Math;
 const fps = 60;
 const leveltitle = document.getElementById('level')
 const alertLose = document.getElementById('alertLose')
-const alertStart = document.getElementById('alertStart')
 const buttonStart = document.getElementById('buttonStart')
 const main = document.getElementById('main')
-const info = document.getElementById('info')
 const bestLevel = document.getElementById('bestLevel')
+const buttonTutorial = document.getElementById('buttonTutorial')
+const tutorialContainer = document.getElementById('tutorialContainer')
+const buttonClose = document.getElementById('buttonClose')
 let startButton = false
 
 
@@ -235,11 +236,6 @@ canvas.addEventListener('touchstart', (e) => {
 
 buttonStart.addEventListener('click', () => {
 	canvas.style.border = '5px solid #000'
-	alertStart.style.visibility = 'visible'
-	info.style.visibility = 'visible'
-	setTimeout(() => {
-		alertStart.style.visibility = 'hidden'
-	}, 3000);
 	if (!main.elementFullscreen) {
 		main.requestFullscreen();
 	}
@@ -251,13 +247,17 @@ buttonStart.addEventListener('click', () => {
 	}
 })
 
-// escucha del boton de informacion
 
-info.addEventListener('click', () => {
-	alertStart.style.visibility = 'visible'
-	setTimeout(() => {
-		alertStart.style.visibility = 'hidden'
-	}, 4000);
+
+// escucha del boton tutorial
+
+
+buttonTutorial.addEventListener('click', () => {
+	tutorialContainer.classList.add('tutorial__container--show')
+})
+
+buttonClose.addEventListener('click', () => {
+	tutorialContainer.classList.remove('tutorial__container--show')
 })
 
 

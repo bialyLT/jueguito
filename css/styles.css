@@ -21,10 +21,10 @@ body {
 
 main {
 	display: flex;
-	align-items: center;
 	flex-direction: column;
 	background-color: var(--main-red);
 	z-index: 5;
+	align-items: center;
 }
 
 header > h1 {
@@ -33,7 +33,6 @@ header > h1 {
 }
 
 footer {
-	margin-top: auto;
 	position: relative;
 	bottom: 0;
 	width: 100%;
@@ -51,20 +50,10 @@ footer {
 	margin-bottom: 2rem;
 	position: relative;
 }
-
-.info {
-	position: absolute;
-	top: 0;
-	left: 0;
-	margin: 0.5rem;
-	text-align: left;
-	font-size: 1.5rem;
-	visibility: hidden;
-}
-
 .buttonStart,
 .alert__lose,
-.alert__start {
+.alert__start,
+.buttonTutorial {
 	background: none;
 	font-size: 3rem;
 	font-weight: 800;
@@ -73,8 +62,18 @@ footer {
 	position: absolute;
 }
 
+.buttonStart,
+.buttonTutorial {
+	transition: transform 0.3s, filter 0.3s;
+	position: relative;
+}
+
+.buttonTutorial {
+	font-size: 2.5rem;
+}
+
 .buttonStart {
-	top: 45px;
+	width: 10ch;
 }
 .alert__start {
 	background-color: var(--main-red);
@@ -94,14 +93,55 @@ footer {
 .fab {
 	color: black;
 	font-size: 2rem;
+	transition: transform 0.3s, filter 0.3s;
+}
+
+/* tutorial  */
+
+.tutorial__container {
+	width: 100vw;
+	height: 100vh;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+	background-color: rgb(0 0 0 / 0.8);
+	display: grid;
+	place-items: center;
+	transform: scale(0);
+	transition: transform 0.3s;
+}
+
+.tutorial__title {
+	color: var(--main-red);
+}
+
+.tutorial__container--show {
+	transform: scale(1);
+}
+
+.tutorial__button-close {
+	position: relative;
+	background: none;
+	outline: none;
+	border: none;
+	text-align: start;
+	color: var(--main-red);
+	font-size: 2.5rem;
+	border-radius: 15px;
+}
+
+.fas::hover {
+	color: #fff;
 }
 
 /* hovers */
 
 .buttonStart:hover,
-.info:hover,
-.fab:hover {
+.fab:hover,
+.buttonTutorial:hover {
 	color: rgb(255, 71, 71);
+	transform: scale(1.5) rotate(25deg);
 }
 
 /* selections */
