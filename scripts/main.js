@@ -3,17 +3,18 @@ import Rectangle from './classes/Rectangle.js';
 import Circle from './classes/Circle.js';
 import posObstacles from './createObstacles.js';
 import canvasHeight from './canvasHeight.js';
-
 const { round, pow, sqrt } = Math;
-const fps = 60;
 const leveltitle = document.getElementById('level')
 const alertLose = document.getElementById('alertLose')
-const buttonStart = document.getElementById('buttonStart')
 const main = document.getElementById('main')
 const bestLevel = document.getElementById('bestLevel')
-const buttonTutorial = document.getElementById('buttonTutorial')
 const tutorialContainer = document.getElementById('tutorialContainer')
+const buttonStart = document.getElementById('buttonStart')
+const buttonTutorial = document.getElementById('buttonTutorial')
 const buttonClose = document.getElementById('buttonClose')
+const buttonSound = document.getElementById('buttonSound')
+const iconSound = document.getElementById('iconSound')
+const fps = 60;
 let startButton = false
 
 
@@ -32,6 +33,15 @@ const arrayObstacles = posObstacles.map(p=> new Obstacle(p.nameObstacle, p.x, p.
 const circle = new Circle(150, posCircleStart)
 const rectstart = new Rectangle (0, posRectStart)
 const rectend = new Rectangle (0,0)
+
+//creacion de los sonidos
+
+const sonido1 = new Howl({
+	src: ['./../assets/tortu-gimiendo.mp3'],
+	loop: false
+})
+
+
 
 
 // funcion para detectar el mouse dentro del canvas
@@ -77,27 +87,6 @@ const touchObs = function() {
 }
 
 
-// funcion para que suba de nivel por cada vez que circle toca un rectangulo
-let velObstacleLeft = 1;
-let velObstacleRight = 1;
-let circleEnding = true
-
-const touchRect = function() {
-	if (circleEnding == true) {
-		const evenObs = arrayObstacles.map(p =>(p % 2 == 0))
-		if (circle.y < heightRectangles && evenObs) {
-			velObstacleLeft += 1
-			circleEnding = false
-		}
-	}
-	else {
-		if (circle.y > posRectStart) {
-			velObstacleRight += 1
-			circleEnding = true
-		}
-	}
-}
-
 
 
 
@@ -106,16 +95,58 @@ const deleteCanvas = () => {
 	canvas.width = 300
 	canvas.height = heightCanvas
 }
+
+
+
+
+
 // FUNCIONES DE NIVELES
+
+// funcion para que suba de nivel por cada vez que circle toca un rectangulo
+let velObstacleLeft = 1;
+let velObstacleRight = 1;
+let level = 1
+
+
+let circleEnding = true
+
+const touchRect = function() {
+	if (circleEnding == true) {
+		// const evenObstacles = arrayObstacles.map(p =>(p % 2 == 0))
+		if (circle.y < heightRectangles) {
+			velObstacleLeft += 1
+			circleEnding = false
+		}
+	}
+	else {
+
+		if (circle.move == true) {
+			if (circle.y > posRectStart) {
+				velObstacleRight += 1
+				level += 1
+				circleEnding = true
+				if (muteButton == false) {
+					sonido1.play()
+				}
+			}
+		}
+		else circleEnding = true
+
+
+	}
+	return level
+}
+
+
+
 
 
 // funcion para cambiar el numero de nivel
 
 
 
-const changeLevel = () => {
-	let level = velObstacleRight
-	leveltitle.innerHTML = `Nivel ${level}`
+const changeLevel = (level) => {
+	if (circle.move == true) leveltitle.innerHTML = `Nivel ${level}`
 }
 
 // funcion para imprimir en pantalla que perdiste
@@ -128,10 +159,19 @@ const  loseGame = () => {
 
 // funcion para crear record
 
-const recordGame = (velfinal) => {
-	let record = velfinal
+const recordGame = (lvl) => {
+	let record = lvl
 	bestLevel.innerHTML = `New Best: ${record}`
 }
+
+
+
+
+
+
+
+
+
 
 
 
@@ -156,11 +196,13 @@ const mainDraw = () => {
 	circle.draw()
 }
 const mainRules = () => {
+	changeLevel(level)
+	if (circle.move == false) {
+		loseGame()
+	}
 	circle.stop()
 	touchObs()
 	touchRect()
-	changeLevel(velObstacleRight)
-	loseGame()
 }
 
 
@@ -177,6 +219,7 @@ const mainRules = () => {
 canvas.addEventListener('mousedown', (e) =>{
 	velObstacleRight = 1
 	velObstacleLeft = 1
+	level = 1
 	let mouseStart = e.isTrusted
 	alertLose.style.visibility = 'hidden'
 	circle.move = true
@@ -205,6 +248,7 @@ canvas.addEventListener('mousedown', (e) =>{
 canvas.addEventListener('touchstart', (e) => {
 	velObstacleRight = 1
 	velObstacleLeft = 1
+	level = 1
 	let touchstart = e.isTrusted
 	alertLose.style.visibility = 'hidden'
 	circle.move = true
@@ -260,6 +304,18 @@ buttonClose.addEventListener('click', () => {
 	tutorialContainer.classList.remove('tutorial__container--show')
 })
 
+//escucha del boton sonido
+let muteButton = false
+buttonSound.addEventListener('click', () => {
+	if (iconSound.classList[1] == 'fa-volume-up') {
+		iconSound.classList.replace('fa-volume-up', 'fa-volume-mute')
+		muteButton = true
+	}
+	else {
+		iconSound.classList.replace('fa-volume-mute', 'fa-volume-up')
+		muteButton = false
+	}
+})
 
 
 

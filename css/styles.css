@@ -6,7 +6,11 @@
 	background-color: var(--main-red);
 	box-sizing: border-box;
 }
-
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+}
 body {
 	background-color: var(--main-red);
 	display: flex;
@@ -53,7 +57,8 @@ footer {
 .buttonStart,
 .alert__lose,
 .alert__start,
-.buttonTutorial {
+.buttonTutorial,
+.buttonSound {
 	background: none;
 	font-size: 3rem;
 	font-weight: 800;
@@ -63,18 +68,21 @@ footer {
 }
 
 .buttonStart,
-.buttonTutorial {
+.buttonTutorial,
+.buttonSound {
 	transition: transform 0.3s, filter 0.3s;
 	position: relative;
 }
 
-.buttonTutorial {
+.buttonTutorial,
+.buttonSound {
 	font-size: 2.5rem;
 }
 
 .buttonStart {
 	width: 10ch;
 }
+
 .alert__start {
 	background-color: var(--main-red);
 	font-size: 1rem;
@@ -139,7 +147,8 @@ footer {
 
 .buttonStart:hover,
 .fab:hover,
-.buttonTutorial:hover {
+.buttonTutorial:hover,
+.buttonSound:hover {
 	color: rgb(255, 71, 71);
 	transform: scale(1.5) rotate(25deg);
 }
@@ -148,7 +157,9 @@ footer {
 
 footer::selection,
 footer > p::selection,
-.buttonStart::selection {
+.buttonStart::selection,
+.buttonSound::selection,
+.buttonTutorial::selection {
 	background-color: black;
 	color: var(--main-red);
 }
