@@ -284,6 +284,7 @@ buttonStart.addEventListener('click', () => {
 		main.requestFullscreen();
 	}
 	buttonStart.style.display = 'none';
+	buttonSound.style.display = 'none';
 	if (startButton == false) {
 		startButton = true
 		startGame()
