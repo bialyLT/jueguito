@@ -24,23 +24,23 @@ let startButton = false
 
 // creacion de base de datos
 
-const indexedDB = window.indexedDB
+// const indexedDB = window.indexedDB
 
-if (indexedDB) {
-	let db
-	const request = indexedDB.open('ranking', 1)
-	request.onsuccess = () => {
-		db = request.result
+// if (indexedDB) {
+// 	let db
+// 	const request = indexedDB.open('ranking', 1)
+// 	request.onsuccess = () => {
+// 		db = request.result
 
-	}
-	request.onupgradeneeded = () => {
-		db = request.result
-		const objectStore = db.createObjectStore('rankingMundial')
-	}
-	request.onerror = (error) => {
-		console.log('error', error.message)
-	}
-}
+// 	}
+// 	request.onupgradeneeded = () => {
+// 		db = request.result
+// 		const objectStore = db.createObjectStore('rankingMundial')
+// 	}
+// 	request.onerror = (error) => {
+// 		console.log('error', error.message)
+// 	}
+// }
 
 
 
@@ -186,12 +186,12 @@ const  loseGame = () => {
 	}
 }
 
-// funcion para crear record
+// // funcion para crear record
 
-const recordGame = (lvl) => {
-	let record = lvl
-	bestLevel.innerHTML = `New Best: ${record}`
-}
+// const recordGame = (lvl) => {
+// 	let record = lvl
+// 	bestLevel.innerHTML = `New Best: ${record}`
+// }
 
 
 
