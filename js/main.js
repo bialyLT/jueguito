@@ -6,16 +6,45 @@ import canvasHeight from './canvasHeight.js';
 const { round, pow, sqrt } = Math;
 const leveltitle = document.getElementById('level')
 const alertLose = document.getElementById('alertLose')
+const canvasContainer = document.getElementById('canvasContainer')
 const main = document.getElementById('main')
+const optionsContainer = document.getElementById('optionsContainer')
 const bestLevel = document.getElementById('bestLevel')
 const tutorialContainer = document.getElementById('tutorialContainer')
 const buttonStart = document.getElementById('buttonStart')
 const buttonTutorial = document.getElementById('buttonTutorial')
 const buttonClose = document.getElementById('buttonClose')
 const buttonSound = document.getElementById('buttonSound')
+const buttonBack = document.getElementById('buttonBack')
+const buttonBackOptions = document.getElementById('buttonBackOptions')
+
 const iconSound = document.getElementById('iconSound')
 const fps = 60;
 let startButton = false
+
+// creacion de base de datos
+
+const indexedDB = window.indexedDB
+
+if (indexedDB) {
+	let db
+	const request = indexedDB.open('ranking', 1)
+	request.onsuccess = () => {
+		db = request.result
+
+	}
+	request.onupgradeneeded = () => {
+		db = request.result
+		const objectStore = db.createObjectStore('rankingMundial')
+	}
+	request.onerror = (error) => {
+		console.log('error', error.message)
+	}
+}
+
+
+
+
 
 
 
@@ -275,22 +304,46 @@ canvas.addEventListener('touchstart', (e) => {
 
 // escucha del boton start
 
-
-
-
 buttonStart.addEventListener('click', () => {
 	canvas.style.border = '5px solid #000'
-	if (!main.elementFullscreen) {
-		main.requestFullscreen();
-	}
-	buttonStart.style.display = 'none';
-	buttonSound.style.display = 'none';
+	main.classList.add('container__translateLeft')
+	canvasContainer.classList.add('container__translateMain')
 	if (startButton == false) {
 		startButton = true
 		startGame()
 
 	}
 })
+
+
+// escucha del boton volver desde el canvas al menu
+
+buttonBack.addEventListener('click', () => {
+	main.classList.remove('container__translateLeft')
+	canvasContainer.classList.remove('container__translateMain')
+})
+
+
+// escucha del boton options
+
+buttonOptions.addEventListener('click', () => {
+	main.classList.add('container__translateLeft')
+	optionsContainer.classList.add('container__translateMain')
+})
+
+//escucha del boton volver del menu de opciones al menu principal
+
+buttonBackOptions.addEventListener('click', () => {
+
+	optionsContainer.classList.remove('container__translateMain')
+	main.classList.remove('container__translateLeft')
+
+})
+
+
+
+
+
 
 
 
@@ -317,6 +370,3 @@ buttonSound.addEventListener('click', () => {
 		muteButton = false
 	}
 })
-
-
-

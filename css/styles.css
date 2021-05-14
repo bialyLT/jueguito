@@ -12,12 +12,10 @@
 	box-sizing: border-box;
 }
 body {
-	background-color: var(--main-red);
+	overflow: hidden;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: space-around;
-	margin: 0 auto;
 	font-size: 16px;
 	font-family: var(--main-font);
 	min-height: 100vh;
@@ -26,9 +24,11 @@ body {
 main {
 	display: flex;
 	flex-direction: column;
-	background-color: var(--main-red);
 	z-index: 5;
 	align-items: center;
+	transition: 0.2s;
+	width: 100%;
+	height: 100vh;
 }
 
 header > h1 {
@@ -37,28 +37,37 @@ header > h1 {
 }
 
 footer {
-	position: relative;
-	bottom: 0;
+	position: absolute;
 	width: 100%;
+	bottom: 0;
 	font-family: 'sans serif';
 	font-weight: bold;
 	text-align: center;
 	color: black;
 }
 
-.container-canvas {
+.canvas__container {
 	display: flex;
+	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	margin-top: 0;
-	margin-bottom: 2rem;
-	position: relative;
+	width: 100%;
+	height: 100vh;
+	position: absolute;
+	transform: translateX(100%);
+	transition: 0.2s;
 }
+
+/* estilos para todos los botones */
+
 .buttonStart,
 .alert__lose,
 .alert__start,
 .buttonTutorial,
-.buttonSound {
+.buttonSound,
+.buttonOptions,
+.buttonChangeName,
+.buttonBack {
 	background: none;
 	font-size: 3rem;
 	font-weight: 800;
@@ -69,13 +78,25 @@ footer {
 
 .buttonStart,
 .buttonTutorial,
-.buttonSound {
+.buttonSound,
+.buttonOptions,
+.buttonChangeName,
+.buttonBack {
 	transition: transform 0.3s, filter 0.3s;
 	position: relative;
 }
 
+.buttonBack {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
 .buttonTutorial,
-.buttonSound {
+.buttonSound,
+.buttonChangeName,
+.buttonOptions,
+.buttonBack {
 	font-size: 2.5rem;
 }
 
@@ -104,7 +125,19 @@ footer {
 	transition: transform 0.3s, filter 0.3s;
 }
 
-/* tutorial  */
+.options__container {
+	transform: translateX(200%);
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	width: 100%;
+	transition: 0.2s;
+}
+
+/* tutorial y menu de opciones*/
 
 .tutorial__container {
 	width: 100vw;
@@ -148,7 +181,10 @@ footer {
 .buttonStart:hover,
 .fab:hover,
 .buttonTutorial:hover,
-.buttonSound:hover {
+.buttonSound:hover,
+.buttonOptions:hover,
+.buttonChangeName:hover,
+.buttonBack:hover {
 	color: rgb(255, 71, 71);
 	transform: scale(1.5) rotate(25deg);
 }
@@ -159,7 +195,10 @@ footer::selection,
 footer > p::selection,
 .buttonStart::selection,
 .buttonSound::selection,
-.buttonTutorial::selection {
+.buttonTutorial::selection,
+.buttonOptions::selection,
+.buttonChangeName::selection,
+.buttonBack::selection {
 	background-color: black;
 	color: var(--main-red);
 }
@@ -169,4 +208,13 @@ h1::selection,
 .alert__start::selection,
 .circleText::selection {
 	background: none;
+}
+
+/* translates */
+
+.container__translateMain {
+	transform: translateX(0);
+}
+.container__translateLeft {
+	transform: translateX(-100%);
 }
