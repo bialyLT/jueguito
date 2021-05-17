@@ -18,7 +18,8 @@ const fps = 60;
 let startButton = false
 
 
-//volviendo version
+//volviendo versio
+
 // variables para calcular las alturas del canvas y sus objetos de manera relativa
 
 const heightCanvas = canvasHeight(85);
