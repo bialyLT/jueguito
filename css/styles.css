@@ -64,10 +64,7 @@ footer {
 .alert__lose,
 .alert__start,
 .buttonTutorial,
-.buttonSound,
-.buttonOptions,
-.buttonChangeName,
-.buttonBack {
+.buttonSound {
 	background: none;
 	font-size: 3rem;
 	font-weight: 800;
@@ -78,25 +75,13 @@ footer {
 
 .buttonStart,
 .buttonTutorial,
-.buttonSound,
-.buttonOptions,
-.buttonChangeName,
-.buttonBack {
+.buttonSound {
 	transition: transform 0.3s, filter 0.3s;
 	position: relative;
 }
 
-.buttonBack {
-	position: absolute;
-	top: 0;
-	left: 0;
-}
-
 .buttonTutorial,
-.buttonSound,
-.buttonChangeName,
-.buttonOptions,
-.buttonBack {
+.buttonSound {
 	font-size: 2.5rem;
 }
 
@@ -123,18 +108,6 @@ footer {
 	color: black;
 	font-size: 2rem;
 	transition: transform 0.3s, filter 0.3s;
-}
-
-.options__container {
-	transform: translateX(200%);
-	position: absolute;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	height: 100vh;
-	width: 100%;
-	transition: 0.2s;
 }
 
 /* tutorial y menu de opciones*/
@@ -181,10 +154,7 @@ footer {
 .buttonStart:hover,
 .fab:hover,
 .buttonTutorial:hover,
-.buttonSound:hover,
-.buttonOptions:hover,
-.buttonChangeName:hover,
-.buttonBack:hover {
+.buttonSound:hover {
 	color: rgb(255, 71, 71);
 	transform: scale(1.5) rotate(25deg);
 }
@@ -195,10 +165,7 @@ footer::selection,
 footer > p::selection,
 .buttonStart::selection,
 .buttonSound::selection,
-.buttonTutorial::selection,
-.buttonOptions::selection,
-.buttonChangeName::selection,
-.buttonBack::selection {
+.buttonTutorial::selection {
 	background-color: black;
 	color: var(--main-red);
 }
@@ -208,13 +175,4 @@ h1::selection,
 .alert__start::selection,
 .circleText::selection {
 	background: none;
-}
-
-/* translates */
-
-.container__translateMain {
-	transform: translateX(0);
-}
-.container__translateLeft {
-	transform: translateX(-100%);
 }
