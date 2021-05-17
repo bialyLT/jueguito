@@ -153,7 +153,7 @@ const changeLevel = (level) => {
 // funcion para imprimir en pantalla que perdiste
 const  loseGame = () => {
 	if (circle.move == false) {
-		alertLose.innerHTML = `Buen intento!`
+		alertLose.innerHTML = `Buen intento brandiiiiii!`
 		alertLose.style.visibility = 'visible'
 	}
 }
