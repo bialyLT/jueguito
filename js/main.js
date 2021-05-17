@@ -296,7 +296,7 @@ buttonStart.addEventListener('click', () => {
 
 
 
-// escucha del boton tutorial
+// escucha del boton tutoriall
 
 
 buttonTutorial.addEventListener('click', () => {
