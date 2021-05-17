@@ -286,6 +286,7 @@ buttonStart.addEventListener('click', () => {
 	}
 	buttonStart.style.display = 'none';
 	buttonSound.style.display = 'none';
+	buttonTutorial.style.display = 'none';
 	if (startButton == false) {
 		startButton = true
 		startGame()

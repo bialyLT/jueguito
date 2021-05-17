@@ -11,33 +11,31 @@
 		<script src="https://kit.fontawesome.com/a24409c319.js" crossorigin="anonymous"></script>	</head>
 	<body>
 		<main class="main" id="main">
+			<section class="canvas__container" id="canvasContainer">
+					<header>
+						<h1 id="level"></h1>
+					</header>
+					<p id="alertLose" class="alert__lose"></p>
+					<canvas
+					id="canvas"
+					>
+			</section>
 			<button class="buttonStart" id="buttonStart">Start Game</button>
 			<button class="buttonTutorial" id="buttonTutorial">Tutorial</button>
+			<button class="buttonSound" id="buttonSound">Volumen:  <i class="fas fa-volume-up" id="iconSound"></i></button>
 			<article class="tutorial__container" id="tutorialContainer">
 				<img src="./assets/gif-tutorial.gif" alt="Tutorial" class="tutorial__gif">
 				<button id="buttonClose" class="tutorial__button-close"><i class="fas fa-times-circle"></i></button>
 			</article>
-			<footer>
-				<p>Liam bialy 2021. © Copyright</p>
-				<p>Version 1.0 Beta</p>
-				<a href="https://www.instagram.com/liamtbialy/?hl=es-la" target="_blank"><i class="fab fa-instagram"></i></a>
-				<a href="https://www.twitter.com/liambialy/" target="_blank"><i class="fab fa-twitter"></i></a>
-				<a href="https://www.github.com/ciitooo/" target="_blank"><i class="fab fa-github"></i></a>
-			</footer>
 		</main>
-		<button class="buttonSound" id="buttonSound">Volumen:  <i class="fas fa-volume-up" id="iconSound"></i></button>
-		<section class="canvas__container" id="canvasContainer">
-			<button class="buttonBack" id="buttonBack"><i class="fas fa-arrow-left"></i></button>
-			<div>
-				<header>
-					<h1 id="level"></h1>
-				</header>
-				<p id="alertLose" class="alert__lose"></p>
-				<canvas
-				id="canvas"
-				>
-			</div>
-		</section>
+		<footer>
+			<p>Liam bialy 2021. © Copyright</p>
+			<p>Version 1.0 Beta</p>
+			<a href="https://www.instagram.com/liamtbialy/?hl=es-la" target="_blank"><i class="fab fa-instagram"></i></a>
+			<a href="https://www.twitter.com/liambialy/" target="_blank"><i class="fab fa-twitter"></i></a>
+			<a href="https://www.github.com/ciitooo/" target="_blank"><i class="fab fa-github"></i></a>
+		</footer>
+
 
 
 		<script type="module" src="./js/main.js"></script>
